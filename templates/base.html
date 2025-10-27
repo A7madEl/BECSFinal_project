@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>{% block title %}BECS{% endblock %}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#dc2626',
+}
+}
+}
+}
+</script>
+<style>
+.blood-flow {
+background: url('https://i.imgur.com/tDhnxNL.gif') center center / cover no-repeat;
+animation: fadeIn 2s ease-in-out;
+}
+
+
+@keyframes fadeIn {
+0% { opacity: 0; transform: scale(1.02); }
+100% { opacity: 1; transform: scale(1); }
+}
+</style>
+</head>
+<body class="bg-gray-100 text-slate-800">
+<nav class="bg-white shadow sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+<a href="/" class="text-xl font-bold text-primary flex items-center gap-2">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2C12 2 7 7 7 11.5C7 14.5376 9.46243 17 12.5 17C15.5376 17 18 14.5376 18 11.5C18 7 12 2 12 2Z"></path></svg>
+BECS – Blood Bank
+</a>
+<div class="text-sm">
+{% if request.user.is_authenticated %}
+<span class="mr-3 hidden sm:inline">Hi, {{ request.user.username }} </span>
+<form action="{% url 'logout' %}" method="post" class="inline">
+{% csrf_token %}
+<button type="submit" class="text-primary hover:underline">Logout</button>
+</form>
+{% else %}
+<a class="text-primary hover:underline mr-3" href="{% url 'login' %}">Login</a>
+<a class="text-white bg-primary px-3 py-1 rounded hover:bg-red-700" href="{% url 'signup' %}">Sign up</a>
+{% endif %}
+</div>
+</div>
+</nav>
+
+
+{% if messages %}
+<div class="max-w-4xl mx-auto mt-4">
+{% for message in messages %}
+<div class="p-3 rounded bg-green-100 text-green-800 border border-green-300 mb-2">
+{{ message }}
+</div>
+{% endfor %}
+</div>
+{% endif %}
+
+
+<main class="max-w-5xl mx-auto p-6">
+{% block content %}{% endblock %}
+</main>
+</body>
+</html>

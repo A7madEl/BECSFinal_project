@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="bg-white shadow rounded-lg p-8 max-w-md mx-auto mt-10">
+  <h1 class="text-2xl font-bold text-center mb-6 text-red-600">Login to Your Account</h1>
+
+  <form method="post" class="space-y-4">
+    {% csrf_token %}
+    <!-- Username -->
+    <label class="block">
+      <span class="text-sm font-medium text-gray-700">Username</span>
+      <input type="text" name="username" required
+        class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg
+               focus:ring-2 focus:ring-red-500 focus:border-red-500
+               hover:border-red-500 hover:bg-red-50 hover:shadow-lg hover:scale-[1.02]
+               transition duration-300 ease-in-out">
+    </label>
+
+    <!-- Password -->
+    <label class="block">
+      <span class="text-sm font-medium text-gray-700">Password</span>
+      <input type="password" name="password" required
+        class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg
+               focus:ring-2 focus:ring-red-500 focus:border-red-500
+               hover:border-red-500 hover:bg-red-50 hover:shadow-lg hover:scale-[1.02]
+               transition duration-300 ease-in-out">
+    </label>
+
+    <!-- Button -->
+    <button type="submit"
+      class="bg-red-600 text-white w-full py-2 rounded-lg
+             hover:bg-red-700 hover:shadow-xl hover:scale-[1.03]
+             focus:ring-2 focus:ring-red-500
+             transition duration-300 ease-in-out font-medium">
+      Login
+    </button>
+  </form>
+
+  <p class="text-sm mt-6 text-center">
+    Don't have an account?
+    <a class="text-red-600 font-semibold hover:underline" href="{% url 'signup' %}">Sign up</a>
+  </p>
+</div>
+{% endblock %}

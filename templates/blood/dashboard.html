@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+  <h1 class="text-3xl font-bold text-red-600 mb-6">Dashboard</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% if request.user.role == "DONOR" %}
+      <a href="{% url 'donate_new' %}" class="block p-6 bg-white rounded-lg shadow hover:shadow-lg border border-gray-200 transition">
+        <h2 class="text-lg font-semibold text-red-600 mb-2">Donate Blood</h2>
+        <p class="text-sm text-gray-600">Register a new blood donation.</p>
+      </a>
+      <a href="{% url 'request_new' %}" class="block p-6 bg-white rounded-lg shadow hover:shadow-lg border border-gray-200 transition">
+        <h2 class="text-lg font-semibold text-red-600 mb-2">Request Blood</h2>
+        <p class="text-sm text-gray-600">Submit a new blood request.</p>
+      </a>
+      <a href="{% url 'request_mine' %}" class="block p-6 bg-white rounded-lg shadow hover:shadow-lg border border-gray-200 transition">
+        <h2 class="text-lg font-semibold text-red-600 mb-2">My Requests</h2>
+        <p class="text-sm text-gray-600">View and track your requests.</p>
+      </a>
+
+    {% elif request.user.role == "PATIENT" %}
+      <a href="{% url 'request_new' %}" class="block p-6 bg-white rounded-lg shadow hover:shadow-lg border border-gray-200 transition">
+        <h2 class="text-lg font-semibold text-red-600 mb-2">Request Blood</h2>
+        <p class="text-sm text-gray-600">Submit a new blood request.</p>
+      </a>
+      <a href="{% url 'request_mine' %}" class="block p-6 bg-white rounded-lg shadow hover:shadow-lg border border-gray-200 transition">
+        <h2 class="text-lg font-semibold text-red-600 mb-2">My Requests</h2>
+        <p class="text-sm text-gray-600">View and track your requests.</p>
+      </a>
+
+    {% elif request.user.role == "DOCTOR" %}
+      <a href="{% url 'doctor_requests' %}" class="block p-6 bg-white rounded-lg shadow hover:shadow-lg border border-gray-200 transition">
+        <h2 class="text-lg font-semibold text-red-600 mb-2">Manage Requests</h2>
+        <p class="text-sm text-gray-600">Review and approve patient requests.</p>
+      </a>
+      <a href="{% url 'stock_view' %}" class="block p-6 bg-white rounded-lg shadow hover:shadow-lg border border-gray-200 transition">
+        <h2 class="text-lg font-semibold text-red-600 mb-2">Stock Dashboard</h2>
+        <p class="text-sm text-gray-600">Monitor available blood stock.</p>
+      </a>
+      <a href="{% url 'stock_pdf' %}" class="block p-6 bg-white rounded-lg shadow hover:shadow-lg border border-gray-200 transition">
+        <h2 class="text-lg font-semibold text-red-600 mb-2">Export Stock PDF</h2>
+        <p class="text-sm text-gray-600">Download stock reports.</p>
+      </a>
+
+    {% elif request.user.role == "STUDENT" %}
+      <a href="{% url 'student_stock' %}" class="block p-6 bg-white rounded-lg shadow hover:shadow-lg border border-gray-200 transition">
+        <h2 class="text-lg font-semibold text-red-600 mb-2">View Stock</h2>
+        <p class="text-sm text-gray-600">Check available blood stock.</p>
+      </a>
+      <a href="{% url 'student_stock_pdf' %}" class="block p-6 bg-white rounded-lg shadow hover:shadow-lg border border-gray-200 transition">
+        <h2 class="text-lg font-semibold text-red-600 mb-2">Export Stock PDF</h2>
+        <p class="text-sm text-gray-600">Download stock reports.</p>
+      </a>
+
+    {% else %}
+      <div class="p-6 bg-yellow-50 border border-yellow-200 rounded-lg">
+        <h2 class="text-lg font-semibold text-yellow-700">No Role Assigned</h2>
+        <p class="text-sm text-gray-600">Please contact the administrator to set your role.</p>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

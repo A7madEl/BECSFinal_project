@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Request Blood{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold text-red-600 mb-6 text-center">Request Blood</h1>
+
+<form method="post" class="space-y-6 max-w-md bg-white p-6 rounded-lg shadow border border-gray-200 mx-auto">
+  {% csrf_token %}
+
+  <!-- Requested Type -->
+  <label class="block">
+    <span class="text-sm font-medium text-gray-700">Requested type</span>
+    <select name="requested_type"
+      class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg
+             focus:ring-2 focus:ring-red-500 focus:border-red-500
+             transition duration-300 ease-in-out">
+      {% for code, label in blood_types %}
+        <option value="{{ code }}">{{ label }}</option>
+      {% endfor %}
+    </select>
+  </label>
+
+  <!-- Quantity -->
+  <label class="block">
+    <span class="text-sm font-medium text-gray-700">Quantity (units)</span>
+    <input type="number" min="1" name="quantity_units" value="1" required
+      class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg
+             focus:ring-2 focus:ring-red-500 focus:border-red-500
+             transition duration-300 ease-in-out" />
+  </label>
+
+  <!-- Urgency -->
+  <label class="block">
+    <span class="text-sm font-medium text-gray-700">Urgency</span>
+    <select name="urgency"
+      class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg
+             focus:ring-2 focus:ring-red-500 focus:border-red-500
+             transition duration-300 ease-in-out">
+      <option value="ROUTINE">Routine</option>
+      <option value="EMERGENCY">Emergency</option>
+    </select>
+  </label>
+
+  <!-- Submit -->
+  <button
+    class="w-full py-2 bg-red-600 text-white font-semibold rounded-lg
+           hover:bg-red-700 hover:shadow-xl hover:scale-[1.03]
+           focus:ring-2 focus:ring-red-500
+           transition duration-300 ease-in-out">
+    Create request
+  </button>
+</form>
+
+<!-- JS to apply hover effects -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const fields = document.querySelectorAll("input, select");
+    fields.forEach(field => {
+      field.classList.add(
+        "hover:border-red-500", "hover:bg-red-50",
+        "hover:shadow-lg", "hover:scale-[1.02]"
+      );
+    });
+  });
+</script>
+{% endblock %}

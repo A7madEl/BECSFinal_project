@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Stock{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold text-red-600 mb-6 text-center">Stock</h1>
+
+<div class="overflow-x-auto bg-white rounded-lg shadow border border-gray-200 max-w-2xl mx-auto">
+  <table class="w-full border-collapse">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="text-left p-3 font-semibold text-gray-700">Blood Type</th>
+        <th class="text-left p-3 font-semibold text-gray-700">Units in stock</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+      <tr class="border-t hover:bg-red-50 hover:scale-[1.01] transition duration-300 ease-in-out">
+        <td class="p-3 font-medium text-gray-800">{{ row.type }}</td>
+        <td class="p-3 text-gray-700">{{ row.total }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td class="p-3 text-gray-500" colspan="2">No stock yet.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="mt-6 text-center">
+  <a href="{% url 'stock_pdf' %}"
+    class="px-5 py-2 bg-red-600 text-white font-semibold rounded-lg
+           hover:bg-red-700 hover:shadow-xl hover:scale-[1.03]
+           focus:ring-2 focus:ring-red-500
+           transition duration-300 ease-in-out inline-block">
+    📄 Export PDF
+  </a>
+</div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Donate{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold text-red-600 mb-6 text-center">Donate Blood</h1>
+
+<form method="post" class="space-y-6 max-w-md bg-white p-6 rounded-lg shadow border border-gray-200 mx-auto">
+  {% csrf_token %}
+
+  <!-- Blood Type -->
+  <label class="block">
+    <span class="text-sm font-medium text-gray-700">Blood type</span>
+    <select name="type"
+      class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg
+             focus:ring-2 focus:ring-red-500 focus:border-red-500
+             transition duration-300 ease-in-out">
+      {% for code, label in blood_types %}
+        <option value="{{ code }}">{{ label }}</option>
+      {% endfor %}
+    </select>
+  </label>
+
+  <!-- Collected At -->
+  <label class="block">
+    <span class="text-sm font-medium text-gray-700">Collected at</span>
+    <input type="date" name="collected_at" value="{{ today|date:'Y-m-d' }}"
+      class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg
+             focus:ring-2 focus:ring-red-500 focus:border-red-500
+             transition duration-300 ease-in-out"
+      required />
+  </label>
+
+  <!-- Volume -->
+  <label class="block">
+    <span class="text-sm font-medium text-gray-700">Volume (ml)</span>
+    <input type="number" name="volume_ml" value="450" min="200" max="600"
+      class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg
+             focus:ring-2 focus:ring-red-500 focus:border-red-500
+             transition duration-300 ease-in-out" />
+  </label>
+
+  <!-- Site -->
+  <label class="block">
+    <span class="text-sm font-medium text-gray-700">Site</span>
+    <input type="text" name="site"
+      class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg
+             focus:ring-2 focus:ring-red-500 focus:border-red-500
+             transition duration-300 ease-in-out" />
+  </label>
+
+  <!-- Submit -->
+  <button
+    class="w-full py-2 bg-red-600 text-white font-semibold rounded-lg
+           hover:bg-red-700 hover:shadow-xl hover:scale-[1.03]
+           focus:ring-2 focus:ring-red-500
+           transition duration-300 ease-in-out">
+    Save donation
+  </button>
+</form>
+
+<!-- JS to apply hover effects -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const fields = document.querySelectorAll("input, select");
+    fields.forEach(field => {
+      field.classList.add(
+        "hover:border-red-500", "hover:bg-red-50",
+        "hover:shadow-lg", "hover:scale-[1.02]"
+      );
+    });
+  });
+</script>
+{% endblock %}
