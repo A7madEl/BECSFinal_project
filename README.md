@@ -3,15 +3,14 @@
 This is a Django-based Blood Bank Management System designed for educational use.
 It allows donors to donate blood, patients to request blood, and gives doctors and students the ability to view and manage blood stock.
 
-🚀 How to Run the Project
+🚀 How to Run the Project (Complete Setup Guide)
 
-## First Time Setup
+Follow these steps from scratch:
 
-1. **Clone or Open the Project**
-
-   Make sure you're inside the folder where `manage.py` exists:
+1. **Clone the Repository**
 
    ```bash
+   git clone <your-repo-url>
    cd BECSFinal_project
    ```
 
@@ -30,61 +29,45 @@ It allows donors to donate blood, patients to request blood, and gives doctors a
    ```
 
 3. **Install Dependencies**
+
    ```bash
    pip install -r requirements.txt
    ```
-   Or manually:
-   ```bash
-   pip install django==5.2.7 reportlab
-   ```
+
+   This installs Django 5.2.7 and reportlab automatically.
 
 4. **Run Migrations**
+
+   First, create migration files (if not already in repository):
    ```bash
    python manage.py makemigrations
+   ```
+
+   Then apply migrations to create the database:
+   ```bash
    python manage.py migrate
    ```
-   > ⚠️ **Note:** After running `migrate`, a default doctor user will be automatically created:
+
+   > ✅ **Note:** After running `migrate`, a default doctor user will be automatically created:
    > - Username: `doctor1`
    > - Password: `Root1978`
    > - Email: `doctor@example.com`
 
 5. **Create an Admin User (Optional)**
+
    ```bash
    python manage.py createsuperuser
    ```
-   This creates a Django superuser for the admin panel.
+   
+   This creates a Django superuser for accessing the admin panel at `/admin/`.
 
 6. **Run the Server**
+
    ```bash
    python manage.py runserver
    ```
-   Then open: http://127.0.0.1:8000/
 
-## Setting Up on Another PC (After Cloning from GitHub)
-
-1. **Clone the repository:**
-   ```bash
-   git clone <your-repo-url>
-   cd BECSFinal_project
-   ```
-
-2. **Create virtual environment** (same as step 2 above)
-
-3. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Run migrations:**
-   ```bash
-   python manage.py migrate
-   ```
-   > ✅ The default doctor user (`doctor1` / `Root1978`) will be automatically created during this step!
-
-5. **Run the server:**
-   ```bash
-   python manage.py runserver
-   ```
+   Open your browser and go to: **http://127.0.0.1:8000/**
 
 ## 📦 What to Upload to GitHub
 
