@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 from django.db.models.signals import post_migrate
-from django.core.exceptions import OperationalError
+from django.db import OperationalError
 
 
 def create_default_doctor():
@@ -41,10 +41,7 @@ class AccountsConfig(AppConfig):
 
     def ready(self):
         """
-        Set up signal to create default doctor user.
-        Also attempts to create on startup if database is ready.
+        Set up signal to create default doctor user after migrations.
         """
         # Connect signal for post-migration creation
         post_migrate.connect(on_post_migrate, sender=self)
-        # Also try to create on startup (if migrations already completed)
-        create_default_doctor()
