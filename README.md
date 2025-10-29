@@ -69,26 +69,6 @@ Follow these steps from scratch:
 
    Open your browser and go to: **http://127.0.0.1:8000/**
 
-## 📦 What to Upload to GitHub
-
-### ✅ **DO Include (Commit these):**
-- ✅ All Python code files (`.py`)
-- ✅ **Migration files** in `accounts/migrations/` and `blood/migrations/` (except `__pycache__`)
-- ✅ Templates, static files, HTML files
-- ✅ `requirements.txt`
-- ✅ `.gitignore`
-- ✅ `README.md`
-- ✅ `manage.py`
-
-### ❌ **DON'T Include (Git will ignore these):**
-- ❌ `db.sqlite3` (database file - each PC has its own)
-- ❌ `__pycache__/` folders (Python cache)
-- ❌ `.venv/` or `venv/` (virtual environment)
-- ❌ `.vscode/`, `.idea/` (IDE settings)
-- ❌ `*.pyc` files (compiled Python files)
-
-The `.gitignore` file handles this automatically!
-
 👤 User Roles Overview
 
 **Doctor (Admin)** – Automatically created on first migration (`doctor1` / `Root1978`). Can also be created from `/admin/`. Can approve/reject requests, view stock, export PDF.
