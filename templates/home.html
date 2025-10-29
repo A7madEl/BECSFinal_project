@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Home - BECS Blood Bank{% endblock %}
+
+{% block content %}
+<div class="text-center py-12">
+  <h1 class="text-4xl font-bold text-red-600 mb-4">Welcome to BECS Blood Bank</h1>
+  <p class="text-xl text-gray-600 mb-8">Save Lives, Donate Blood</p>
+  
+  <div class="max-w-2xl mx-auto space-y-6">
+    {% if not request.user.is_authenticated %}
+      <div class="bg-white rounded-lg shadow-lg p-8 border border-gray-200">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Get Started</h2>
+        <p class="text-gray-600 mb-6">Join our blood bank system to donate or request blood.</p>
+        <div class="flex gap-4 justify-center">
+          <a href="{% url 'login' %}" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition">
+            Login
+          </a>
+          <a href="{% url 'signup' %}" class="bg-white text-red-600 border-2 border-red-600 px-6 py-3 rounded-lg hover:bg-red-50 transition">
+            Sign Up
+          </a>
+        </div>
+      </div>
+    {% else %}
+      <div class="bg-white rounded-lg shadow-lg p-8 border border-gray-200">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Welcome back, {{ request.user.username }}!</h2>
+        <p class="text-gray-600 mb-6">Continue to your dashboard to manage donations and requests.</p>
+        <a href="{% url 'dashboard' %}" class="inline-block bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition">
+          Go to Dashboard
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+

@@ -6,9 +6,10 @@ from accounts import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("", views.home, name="home"),
+    path("dashboard/", include("blood.urls")),
     path("accounts/login/", auth_views.LoginView.as_view(), name="login"),
     path("accounts/logout/", auth_views.LogoutView.as_view(next_page="login"), name="logout"),
-    path("", include("blood.urls")),
     path("accounts/", include("accounts.urls")),
    
 

@@ -6,6 +6,9 @@ from django.contrib.auth.decorators import login_required
 from .forms import SignupForm
 from .models import User
 
+def home(request):
+    return render(request, "home.html")
+
 def signup(request):
     if request.user.is_authenticated:
         # already logged in — send to dashboard
