@@ -28,9 +28,10 @@ pip install django==5.2.7 reportlab
 
 4. Run Migrations
 python manage.py makemigrations
+
 python manage.py migrate
 
-5. Create an Admin User
+6. Create an Admin User
 python manage.py createsuperuser
 
 
